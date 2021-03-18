@@ -9,3 +9,6 @@ Some of the things that this repo will hold are:
   * Perform gradient descent of the loss function on the input values rather than the weights
   * Bayesian Optimization
   * Random Search
+  * What am I trying to minimize/maximize?
+    * Maximize reactor lifetime
+    * Minimize peaking factor
