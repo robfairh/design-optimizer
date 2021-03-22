@@ -10,10 +10,60 @@
 
 * particles63: fuel compact of 63.24 cm-height, 1.085 cm-radius.
 
+| Component     | Material      | Reference 		|
+|---------------|---------------|-------------------|
+| Kernel		| UO2/UCO (1:1)	| Section 1 in [1]	|
+| Buffer		| Graphite 		| Table 5 in [2] 	|
+| IPyC			| Graphite [2]	| Table 5 in [2] 	|
+| SiC			| 70-Si/30-C?	| 					|
+| OPyC			| Graphite [2]	| Table 5 in [2]	|
+| Compact 		| NITE-SiC 		| [1]				|
 
-| Characteristic |  Value  | Reference |
-|----------------|---------|-----------|
-| Fuel           | 
+[^1]: Rounded value.
+
+| Component     | Radius/thickness  | Reference 		|
+|---------------|-------------------|-------------------|
+| Kernel 		| 400 $\mu$ m 		| Table 5 in [1] 	|
+| Buffer		| 75 $\mu$ m 		| Table 5 in [1]	|
+| IPyC			| 35 $\mu$ m 		| Table 5 in [1]	|
+| SiC			| 35 $\mu$ m [^1]	| Table 5 in [1]    |
+| OPyC			| 20 $\mu$ m		| Table 5 in [1]    |
+| Compact 		| 1.085 cm [^1]		| Section 1 in [1]	|
+
+[^1]: Rounded value.
+
+| Component     | Density       	| Reference 		|
+|---------------|-------------------|-------------------|
+| Kernel		| 10.8 g/cm3 		| Table 5 in [1]	|
+| Buffer		| 0.98 g/cm3 		| Table 5 in [1]	|
+| IPyC			| 1.85 g/cm3		| Table 5 in [1]	|
+| SiC			| 3.2 g/cm3			| Table 5 in [1]	|
+| OPyC			| 1.85 g/cm3 [^1]	| Table 5 in [1]	|
+| Compact 		| 3.2 g/cm3			| Table 1 in [1]	|
+
+[^1]: Rounded value.
+
+
+
+
+
+| Characteristic    	| Value             | Reference     	|
+|-----------------------|-------------------|-------------------|
+| Enrichment			| ?					|					|
+| Packing fraction		| 40 %				| Table 5 in [1]	|
+| Compact length		| ?					|					|
+| Cooling channel radius| 0.775 cm 			| Section 1 in [1]	|
+| Block Material		| ?		|					|
+| Block Density			| ?					|					|
+| Block flat-to-flat	| ?					|					|
+
+
+| Reflector	| Material		| Length/Radius [cm]    | Reference |
+|-----------|---------------|-----------------------|-----------|
+| Top 	 	| Graphite 		|						|			|
+| Bottom 	| Graphite 		|						|			|
+| Radial  	| Graphite 		|						|			|
+| Radial  	| BeO	 		|						|			|
 
 
 # Notes
@@ -25,3 +75,4 @@
 
 [1] Hawari. Development and Deployment Assessment of a Melt-Down Proof Modular Micro Reactor (MDP-MMR). Technical Report. NEUP-DOE. 2018.
 
+[2] Bostelmann, F. Strydom, G. Yoon. S.J. Results for Phase I of the IAEA Coordinated Research Program on HTGR Uncertainties. Technical Report. INL. 2015.
