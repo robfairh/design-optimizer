@@ -17,7 +17,7 @@
 | IPyC			| Graphite [2]	| Table 5 in [2] 	|
 | SiC			| 70-Si/30-C?	| 					|
 | OPyC			| Graphite [2]	| Table 5 in [2]	|
-| Compact 		| NITE-SiC 		| [1]				|
+| Compact 		| SiC	 		| [1]				|
 
 [^1]: Rounded value.
 
@@ -43,27 +43,33 @@
 
 [^1]: Rounded value.
 
+| Characteristic    		| Value             | Reference     	|
+|---------------------------|-------------------|-------------------|
+| Enrichment				| 20 %				| -					|
+| Packing fraction			| 40 %				| Table 5 in [1]	|
+| Pitch						| 6.67 cm 			| Calculated		|
+| Cooling channel radius 	| 0.775 cm 			| Section 1 in [1]	|
+| Control channel radius 	| 4 cm 				| Section 1 in [1]	|
+| Shutdown channel radius 	| 6 cm 	 			| Section 1 in [1]	|
+| Fuel channel length		| 68 cm [^1]		| Section 1 in [1]	|
+| Block Material			| Graphite			| Section 1 in [1]	|
+| Block Density				| 1.75 g/cm3 [^1]	| Table 12 in [3]	|
+| Block flat-to-flat		| 30 cm				| Section 1 in [1]	|
+
+| Coolant Density			| 1.7973 kg/m3 		| T=800K, P=3MPa	|
 
 
+[^1]: Rounded value.
 
+| Reflector	| Material		| Length/Radius [cm]    | Reference 		|
+|-----------|---------------|-----------------------|-------------------|
+| Top 	 	| Graphite 		| 68 cm					| Assumed			|
+| Bottom 	| Graphite 		| 68 cm					| Assumed			|
+| Radial  	| Graphite 		| 134 cm 	 			| Section 1 in [1]	|
 
-| Characteristic    	| Value             | Reference     	|
-|-----------------------|-------------------|-------------------|
-| Enrichment			| ?					|					|
-| Packing fraction		| 40 %				| Table 5 in [1]	|
-| Compact length		| ?					|					|
-| Cooling channel radius| 0.775 cm 			| Section 1 in [1]	|
-| Block Material		| ?		|					|
-| Block Density			| ?					|					|
-| Block flat-to-flat	| ?					|					|
-
-
-| Reflector	| Material		| Length/Radius [cm]    | Reference |
-|-----------|---------------|-----------------------|-----------|
-| Top 	 	| Graphite 		|						|			|
-| Bottom 	| Graphite 		|						|			|
-| Radial  	| Graphite 		|						|			|
-| Radial  	| BeO	 		|						|			|
+Design parameters:
+* Reactor lifetime > 20 years
+* 15 MW ??
 
 
 # Notes
@@ -76,3 +82,5 @@
 [1] Hawari. Development and Deployment Assessment of a Melt-Down Proof Modular Micro Reactor (MDP-MMR). Technical Report. NEUP-DOE. 2018.
 
 [2] Bostelmann, F. Strydom, G. Yoon. S.J. Results for Phase I of the IAEA Coordinated Research Program on HTGR Uncertainties. Technical Report. INL. 2015.
+
+[3] Gougar, H. Ortensi, J. Baxter, A. Prismatic Coupled Neutronics/Thermal Fluids Transient Benchmark of the MHTGR-350 MW Core Design Benchmark Definition. 2010.

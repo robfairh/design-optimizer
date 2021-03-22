@@ -2,7 +2,7 @@
 
 /**********************************
 *       Particle Definition       *
-* Kernel UN Diameter (D) 800e-6 m *
+* Kernel Radius (R) 400e-6 m      *
 * Buffer Thickness (T) 75e-6 m    *
 * IPyC T 35e-6 m                  *
 * SiC T 35e-6 m                   *
@@ -28,14 +28,12 @@ surf 1 inf
 cell 500 2 sic    -1
 
 % --- Fuel channel:
-surf s1  cyl 0.0 0.0 1.085  2.38  65.62
-surf s2  cyl 0.0 0.0 1.085  0     68
+surf s1  cyl 0.0 0.0 1.085  0     68
 
-pbed 10 2 "particles63"
+pbed 10 2 "particles68"
 
 cell c1 12 fill 10 -s1
-cell c2 12 block    s1 -s2
-cell c3 12 block    s2
+cell c2 12 block    s1
 
 lat 5 9 0.0 0.0 4
     0.0 12
@@ -114,11 +112,9 @@ lat 22 3 0.0 0.0 11 11 30.0
           4 4 4 4 4 4 4 4 4 4 4
   
 % Reflector: radial
-surf 130 cyl 0.0 0.0 124.0 0.0 272.0
-surf 131 cyl 0.0 0.0 134.0 0.0 272.0
+surf 130 cyl 0.0 0.0 134.0 0.0 272.0
 
 cell 540 0 fill 22   -130
-cell 541 0 reflector  130 -131
 
 % Reflector: bottom and top
 surf 132 cyl 0.0 0.0 134.0  -68   0
@@ -164,9 +160,6 @@ mat block     -1.75       tmp 900 moder grph 6000
 mat helium    -0.0020526  tmp 900
  2004.09c     -1.00
 
-mat reflector -3.01       tmp 900
- 4009.09c      0.50
- 8016.09c      0.50
 
 % --- Thermal scattering data for light water:
 therm grph 900 gr05.32t gr06.32t
@@ -219,8 +212,8 @@ set power 15000000 %15MW
 % det pinpowers dr -8 void   dh 3 25.98 45.0 3.32 20 20 0 272 1
 
 % % --- Cross-sections homogenization
-set gcu 0
-set nfg 2 0.625E-6
+% set gcu 0
+% set nfg 2 0.625E-6
 
 % branch fuel0
 % stp un        -10.8       600
@@ -231,14 +224,14 @@ set nfg 2 0.625E-6
 % stp helium     -0.0023923 600
 % stp reflector  -3.01      600
 
-branch fuel1
-stp un        -10.8       900
-stp buffer     -0.98      900 grph gr05.32t gr06.32t
-stp pyc        -1.85      900 grph gr05.32t gr06.32t
-stp sic        -3.2       900 grph gr05.32t gr06.32t
-stp block      -1.75      900 grph gr05.32t gr06.32t
-stp helium     -0.0015985 900
-stp reflector  -3.01      900
+% branch fuel1
+% stp un        -10.8       900
+% stp buffer     -0.98      900 grph gr05.32t gr06.32t
+% stp pyc        -1.85      900 grph gr05.32t gr06.32t
+% stp sic        -3.2       900 grph gr05.32t gr06.32t
+% stp block      -1.75      900 grph gr05.32t gr06.32t
+% stp helium     -0.0015985 900
+% stp reflector  -3.01      900
 
 % branch fuel2
 % stp un        -10.8       1200
@@ -249,15 +242,15 @@ stp reflector  -3.01      900
 % stp helium     -0.0012002 1200
 % stp reflector  -3.01      1200
 
-branch fuel3
-stp un        -10.8       1500
-stp buffer     -0.98      1500 grph gr07.32t gr08.32t
-stp pyc        -1.85      1500 grph gr07.32t gr08.32t
-stp sic        -3.2       1500 grph gr07.32t gr08.32t
-stp block      -1.75      1500 grph gr07.32t gr08.32t
-stp helium     -0.0009608 1500
-stp reflector  -3.01      1500
+% branch fuel3
+% stp un        -10.8       1500
+% stp buffer     -0.98      1500 grph gr07.32t gr08.32t
+% stp pyc        -1.85      1500 grph gr07.32t gr08.32t
+% stp sic        -3.2       1500 grph gr07.32t gr08.32t
+% stp block      -1.75      1500 grph gr07.32t gr08.32t
+% stp helium     -0.0009608 1500
+% stp reflector  -3.01      1500
 
-coef 1
-0
-2 fuel1 fuel3
+% coef 1
+% 0
+% 2 fuel1 fuel3
