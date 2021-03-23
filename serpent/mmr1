@@ -136,28 +136,28 @@ cell 544 0 outside                  134
 **************************************/
 
 % UO2+UCO
-mat un       -10.8        tmp 800 burn 1
+mat un       -10.8        tmp 800 burn 1          rgb 255 255   0
  92235.08c     0.0665
  92238.08c     0.2668
   6000.08c     0.0833
   8016.08c     0.5834
 
-mat buffer    -0.98       tmp 800 moder grph 6000
+mat buffer    -0.98       tmp 800 moder grph 6000 rgb 222   0 255
  6000.08c     -1.0000
 
-mat pyc       -1.85       tmp 800 moder grph 6000
+mat pyc       -1.85       tmp 800 moder grph 6000 rgb   0 188   0
  6000.08c     -1.0000
 
-mat sic       -3.2        tmp 800 moder grph 6000
+mat sic       -3.2        tmp 800 moder grph 6000 rgb 200 200   0
 14028.08c     -0.64446
 14029.08c     -0.035025
 14030.08c     -0.020915
  6000.08c     -0.2996
 
-mat block     -1.75       tmp 800 moder grph 6000
+mat block     -1.75       tmp 800 moder grph 6000 rgb 135 206 250
  6000.08c     -1.00
 
-mat helium    -0.0017973  tmp 800
+mat helium    -0.0017973  tmp 800                 rgb 128   0 128
  2004.08c     -1.00
 
 
@@ -165,7 +165,6 @@ mat helium    -0.0017973  tmp 800
 therm grph gr05.32t
 
 % --- Cross section data library file path:
-% set acelib  "/home/mt/Desktop/MSFR/Serpent/c757mnyws00/xsdata/sss_endfb7u.xsdata"
 set acelib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff312.xsdata"
 
 % --- Vacuum boundary condition:
@@ -174,7 +173,6 @@ set bc 1
 % --- Geometry plot:
 plot 3 2000 2000 30.0
 plot 2 2000 2000 1.0
-% plot 2 2000 2000 0.0
 
 % --- Neutron population and criticality cycles:
 set pop 200000 400 100
