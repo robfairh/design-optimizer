@@ -15,11 +15,14 @@
 | Kernel		| UO2/UCO (1:1)	| Section 1 in [1]	|
 | Buffer		| Graphite 		| Table 5 in [2] 	|
 | IPyC			| Graphite [2]	| Table 5 in [2] 	|
+
 | SiC			| 70-Si/30-C?	| 					|
+
 | OPyC			| Graphite [2]	| Table 5 in [2]	|
 | Compact 		| SiC	 		| [1]				|
 
 [^1]: Rounded value.
+
 
 | Component     | Radius/thickness  | Reference 		|
 |---------------|-------------------|-------------------|
@@ -43,23 +46,22 @@
 
 [^1]: Rounded value.
 
-| Characteristic    		| Value             | Reference     	|
-|---------------------------|-------------------|-------------------|
-| Enrichment				| 20 %				| -					|
-| Packing fraction			| 40 %				| Table 5 in [1]	|
-| Pitch						| 6.67 cm 			| Calculated		|
-| Cooling channel radius 	| 0.775 cm 			| Section 1 in [1]	|
-| Control channel radius 	| 4 cm 				| Section 1 in [1]	|
-| Shutdown channel radius 	| 6 cm 	 			| Section 1 in [1]	|
-| Fuel channel length		| 68 cm [^1]		| Section 1 in [1]	|
-| Block Material			| Graphite			| Section 1 in [1]	|
-| Block Density				| 1.75 g/cm3 [^1]	| Table 12 in [3]	|
-| Block flat-to-flat		| 30 cm				| Section 1 in [1]	|
-
-| Coolant Density			| 1.7973 kg/m3 		| T=800K, P=3MPa	|
-
+| Characteristic    		| Value             | Reference     				|
+|---------------------------|-------------------|-------------------------------|
+| Enrichment				| 20 %				| -								|
+| Packing fraction			| 40 %				| Table 5 in [1]				|
+| Pitch						| 6.67 cm 			| Calculated					|
+| Cooling channel radius 	| 0.775 cm 			| Section 1 in [1]				|
+| Control channel radius 	| 4 cm 				| Section 1 in [1]				|
+| Shutdown channel radius 	| 6 cm 	 			| Section 1 in [1]				|
+| Fuel channel length		| 68 cm [^1]		| Section 1 in [1]				|
+| Block Material			| Graphite			| Section 1 in [1]				|
+| Block Density				| 1.75 g/cm3 [^1]	| Table 12 in [3]				|
+| Block flat-to-flat		| 30 cm				| Section 1 in [1]				|
+| Coolant Density			| 1.7973 kg/m3 		| T=800K [4], P=3MPa p.51 [1]	|
 
 [^1]: Rounded value.
+
 
 | Reflector	| Material		| Length/Radius [cm]    | Reference 		|
 |-----------|---------------|-----------------------|-------------------|
@@ -84,3 +86,5 @@ Design parameters:
 [2] Bostelmann, F. Strydom, G. Yoon. S.J. Results for Phase I of the IAEA Coordinated Research Program on HTGR Uncertainties. Technical Report. INL. 2015.
 
 [3] Gougar, H. Ortensi, J. Baxter, A. Prismatic Coupled Neutronics/Thermal Fluids Transient Benchmark of the MHTGR-350 MW Core Design Benchmark Definition. 2010.
+
+[4] Venneri, Chang, Jo, Hawari. NEUTRONIC ANALYSIS OF A MICRO MODULAR REACTOR. 2014.
