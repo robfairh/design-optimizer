@@ -48,7 +48,7 @@
 
 | Characteristic    		| Value             | Reference     				|
 |---------------------------|-------------------|-------------------------------|
-| Enrichment				| 20 %				| -								|
+| Enrichment				| 19.75 %			| -								|
 | Packing fraction			| 40 %				| Table 5 in [1]				|
 | Pitch						| 6.67 cm 			| Calculated					|
 | Cooling channel radius 	| 0.775 cm 			| Section 1 in [1]				|

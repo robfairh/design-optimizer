@@ -19,113 +19,115 @@ sic    0.0545
 pyc    0.0565
 sic
 
-
 % --- Universe surrounding particles:
-surf 1 inf
-cell 500 2 sic    -1
+surf 100 inf
+cell 500 matrix sic -100
 
 % --- Fuel channel:
-surf s1  cyl 0.0 0.0 1.085  0     68
+surf 101  cyl 0.0 0.0 1.085  0 68
 
-pbed 10 2 "particles68"
+pbed particles matrix "particles68"
 
-cell c1 12 fill 10 -s1
-cell c2 12 block    s1
+cell 501 frod fill particles -101
+cell 502 frod block           101
 
-lat 5 9 0.0 0.0 4
-    0.0 12
-   68.0 12
-  136.0 12
-  204.0 12
+lat F 9 0.0 0.0 4
+    0.0 frod
+   68.0 frod
+  136.0 frod
+  204.0 frod
 
 % -- Coolant Channel
-surf 113 cyl 0.0 0.0 0.775 0.0 272.0
+surf 102 cyl 0.0 0.0 0.775 0.0 272.0
 
-cell 515 6 helium  -113
-cell 516 6 block    113
+cell 503 C helium  -102
+cell 504 C block    102
 
 % -- Graphite dummy rods
-surf 102 inf
-cell 502 4 block  -102
+surf 103 inf
+cell 505 M block  -103
 
 % -- Fuel Block Lattice
 lat 20 3 0.0 0.0 13 13 3.333
-4 4 4 4 4 4 4 4 4 4 4 4 4
- 4 4 4 4 4 4 4 4 5 5 4 4 4
-  4 4 4 4 4 4 5 5 6 5 5 4 4
-   4 4 4 4 5 5 6 5 5 6 5 5 4
-    4 4 4 5 6 5 5 6 5 5 6 5 4
-     4 4 4 5 5 6 5 5 6 5 5 4 4
-      4 4 5 6 5 5 6 5 5 6 5 4 4
-       4 4 5 5 6 5 5 6 5 5 4 4 4
-        4 5 6 5 5 6 5 5 6 5 4 4 4
-         4 5 5 6 5 5 6 5 5 4 4 4 4
-          4 4 5 5 6 5 5 4 4 4 4 4 4
-           4 4 4 5 5 4 4 4 4 4 4 4 4
-            4 4 4 4 4 4 4 4 4 4 4 4 4
+M M M M M M M M M M M M M
+ M M M M M M M M F F M M M
+  M M M M M M F F C F F M M
+   M M M M F F C F F C F F M
+    M M M F C F F C F F C F M
+     M M M F F C F F C F F M M
+      M M F C F F C F F C F M M
+       M M F F C F F C F F M M M
+        M F C F F C F F C F M M M
+         M F F C F F C F F M M M M
+          M M F F C F F M M M M M M
+           M M M F F M M M M M M M M
+            M M M M M M M M M M M M M
 
 surf 120 hexyprism 0.0 0.0 15.0 0.0 272.0
 
-cell 520 8 fill 20  -120
-cell 521 8 block     120
+cell 520 FB fill 20  -120
+cell 521 FB block     120
 
 % -- Control Block Lattice
 lat 21 3 0.0 0.0 13 13 3.333
-4 4 4 4 4 4 4 4 4 4 4 4 4
- 4 4 4 4 4 4 4 4 5 5 4 4 4
-  4 4 4 4 4 4 5 5 6 5 5 4 4
-   4 4 4 4 5 5 6 5 5 6 5 5 4
-    4 4 4 5 6 5 5 6 5 5 6 5 4
-     4 4 4 5 5 6 4 4 6 5 5 4 4
-      4 4 5 6 5 4 4 4 5 6 5 4 4
-       4 4 5 5 6 4 4 6 5 5 4 4 4
-        4 5 6 5 5 6 5 5 6 5 4 4 4
-         4 5 5 6 5 5 6 5 5 4 4 4 4
-          4 4 5 5 6 5 5 4 4 4 4 4 4
-           4 4 4 5 5 4 4 4 4 4 4 4 4
-            4 4 4 4 4 4 4 4 4 4 4 4 4
+M M M M M M M M M M M M M
+ M M M M M M M M F F M M M
+  M M M M M M F F C F F M M
+   M M M M F F C F F C F F M
+    M M M F C F F C F F C F M
+     M M M F F C M M C F F M M
+      M M F C F M M M F C F M M
+       M M F F C M M C F F M M M
+        M F C F F C F F C F M M M
+         M F F C F F C F F M M M M
+          M M F F C F F M M M M M M
+           M M M F F M M M M M M M M
+            M M M M M M M M M M M M M
 
 surf 121 cyl       0.0 0.0  4.0 0.0 272.0
 surf 122 hexyprism 0.0 0.0 15.0 0.0 272.0
 
-cell 522 7 helium   -121
-cell 523 7 fill 21   121 -122
-cell 524 7 block     122
+cell 530 CB helium   -121
+cell 531 CB fill 21   121 -122
+cell 532 CB block     122
 
-% -- Central Block
+% -- Central Block -- Safety Block
 surf 123 cyl 0.0 0.0 6.0 0.0 272.0
 
-cell 530 9 helium   -123
-cell 531 9 block     123
+cell 540 SB helium   -123
+cell 541 SB block     123
+
+% -- Moderator Block
+surf 124 inf
+cell 550 MB block  -124
 
 % -- Core Lattice
 lat 22 3 0.0 0.0 11 11 30.0
-4 4 4 4 4 4 4 4 4 4 4
- 4 4 4 4 4 4 4 4 4 4 4
-  4 4 4 4 4 7 8 8 7 4 4
-   4 4 4 4 8 8 7 8 8 4 4
-    4 4 4 8 7 8 8 7 8 4 4
-     4 4 7 8 8 9 8 8 7 4 4
-      4 4 8 7 8 8 7 8 4 4 4
-       4 4 8 8 7 8 8 4 4 4 4
-        4 4 7 8 8 7 4 4 4 4 4
-         4 4 4 4 4 4 4 4 4 4 4
-          4 4 4 4 4 4 4 4 4 4 4
+MB MB MB MB MB MB MB MB MB MB MB
+ MB MB MB MB MB MB MB MB MB MB MB
+  MB MB MB MB MB CB FB FB CB MB MB
+   MB MB MB MB FB FB CB FB FB MB MB
+    MB MB MB FB CB FB FB CB FB MB MB
+     MB MB CB FB FB SB FB FB CB MB MB
+      MB MB FB CB FB FB CB FB MB MB MB
+       MB MB FB FB CB FB FB MB MB MB MB
+        MB MB CB FB FB CB MB MB MB MB MB
+         MB MB MB MB MB MB MB MB MB MB MB
+          MB MB MB MB MB MB MB MB MB MB MB
   
 % Reflector: radial
 surf 130 cyl 0.0 0.0 134.0 0.0 272.0
-cell 540 0 fill 22   -130
+cell 560 0 fill 22   -130
 
 % Reflector: bottom and top
 surf 132 cyl 0.0 0.0 134.0  -68   0
 surf 133 cyl 0.0 0.0 134.0  272 340
+surf 134 cyl 0.0 0.0 134.0  -68 340
 
-cell 543 0 fill 4 -133
-cell 542 0 fill 4 -132
+cell 570 0 fill M -132
+cell 571 0 fill M -133
+cell 572 0 outside 134
 
-% Outside world
-surf 134   cyl       0.0 0.0 134.0  -68   340
-cell 544 0 outside                  134
 
 /**************************************
 *              Materials              *
