@@ -85,6 +85,6 @@ Design parameters:
 
 [2] Bostelmann, F. Strydom, G. Yoon. S.J. Results for Phase I of the IAEA Coordinated Research Program on HTGR Uncertainties. Technical Report. INL. 2015.
 
-[3] Gougar, H. Ortensi, J. Baxter, A. Prismatic Coupled Neutronics/Thermal Fluids Transient Benchmark of the MHTGR-350 MW Core Design Benchmark Definition. 2010.
+[3] Gougar, H. Ortensi, J. Baxter, A. Preliminary pPismatic Coupled Neutronics/Thermal Fluids Transient Benchmark of the MHTGR-350 MW Core Design Benchmark Definition. 2010.
 
 [4] Venneri, Chang, Jo, Hawari. NEUTRONIC ANALYSIS OF A MICRO MODULAR REACTOR. 2014.
