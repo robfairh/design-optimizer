@@ -15,11 +15,9 @@
 | Kernel		| UO2/UCO (1:1)	| Section 1 in [1]	|
 | Buffer		| Graphite 		| Table 5 in [2] 	|
 | IPyC			| Graphite [2]	| Table 5 in [2] 	|
-
-| SiC			| 70-Si/30-C?	| 					|
-
+| SiC			| SiC (1:1)		| Assumed			|
 | OPyC			| Graphite [2]	| Table 5 in [2]	|
-| Compact 		| SiC	 		| [1]				|
+| Compact 		| SiC	 		| Section 1 in [1]	|
 
 [^1]: Rounded value.
 
@@ -70,8 +68,8 @@
 | Radial  	| Graphite 		| 134 cm 	 			| Section 1 in [1]	|
 
 Design parameters:
+* P = 15 MWth
 * Reactor lifetime > 20 years
-* 15 MW ??
 
 
 # Notes
