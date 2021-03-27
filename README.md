@@ -22,6 +22,12 @@ Some of the things that this repo will hold are:
   * What am I trying to minimize/maximize?
     * Maximize reactor lifetime
     * Minimize peaking factor
+    * Instead of \partial C/\partial x: \partial f/\partial x, f = reactor lifetime/peaking factor
+
+* Another idea, minimize the peak power factors for all BUs.
+Based on [3]
+
+* Use random generated positions for the LBPs
 
 
 References:
@@ -30,3 +36,4 @@ References:
 
 * [1] Montes et al. Local power peaking factor estimation in nuclear fuel by artificial neural networks. 2008.
 * [2] Sobes et al. Artificial Intelligence Design of Nuclear Systems empowered by advanced manufacturing. 2020
+* [3] Uhrig R. Potential Applications of Neural Networks to Nuclear Power Plants. 1991.
