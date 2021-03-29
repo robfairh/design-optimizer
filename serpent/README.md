@@ -75,6 +75,9 @@ Design parameters:
 # Notes
 
 
+mmr: contains serpent model that calculates power distribution and burnup
+mmr-simple: contains very simple input file
+
 
 
 # References
