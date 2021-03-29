@@ -11,6 +11,11 @@ Objectives?
 
 Literature review?
 
+Methodology
+
+"The encoded fuel assembly distributions in the core are mapped into vectors to be used as input to train the network"
+
+
 Some of the things that this repo will hold are:
 * MMR serpent input files
 * Python scripts fore training an Articifial Neural Network (ANN)
@@ -28,6 +33,7 @@ Some of the things that this repo will hold are:
 Based on [3]
 
 * Use random generated positions for the LBPs
+
 
 
 References:
