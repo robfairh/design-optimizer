@@ -34,6 +34,7 @@ Based on [3]
 
 * Use random generated positions for the LBPs
 
+* Genetic Algorithms [4]
 
 
 References:
@@ -43,3 +44,4 @@ References:
 * [1] Montes et al. Local power peaking factor estimation in nuclear fuel by artificial neural networks. 2008.
 * [2] Sobes et al. Artificial Intelligence Design of Nuclear Systems empowered by advanced manufacturing. 2020
 * [3] Uhrig R. Potential Applications of Neural Networks to Nuclear Power Plants. 1991.
+* [4] Erdigan et al. 2003. A PWR reload optimisation code (XCore) using artificial neural networks and genetic algorithms
