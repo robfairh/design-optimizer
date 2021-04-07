@@ -60,128 +60,130 @@ def convert_lbparray_to_universe(lbparray):
     return universes
 
 
-lpb_location_assembly1 = np.zeros(sum(get_pins_in_columns('assembly1')))
-lpb_location_assembly2 = np.zeros(sum(get_pins_in_columns('assembly2')))
-lpb_location_assembly3 = np.zeros(sum(get_pins_in_columns('assembly3')))
-lpb_location_assembly4 = np.zeros(sum(get_pins_in_columns('assembly4')))
-lpb_location_assembly5 = np.zeros(sum(get_pins_in_columns('assembly5')))
-
-lpb_location_assembly1[find_index('assembly1', 1, 1)] = 1
-lpb_location_assembly1[find_index('assembly1', 2, 1)] = 1
-
-lpb_location_assembly4[find_index('assembly4', 3, 2)] = 1
-lpb_location_assembly4[find_index('assembly4', 6, 3)] = 1
+def set_lbp_location(assemb_type):
+    '''
+    '''
+    lpb_location = np.random.randint(2, size=sum(get_pins_in_columns(assemb_type)))
+    return lpb_location
 
 
-col1 = []
-for i in range(1, 11):
-    col1.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly1, 'assembly1', i)))
+if __name__ == "__main__":
 
-col2 = []
-for i in range(4, 12):
-    col2.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly2, 'assembly2', i)))
+    lpb_location_assembly1 = set_lbp_location('assembly1')
+    lpb_location_assembly2 = set_lbp_location('assembly2')
+    lpb_location_assembly3 = set_lbp_location('assembly3')
+    lpb_location_assembly4 = set_lbp_location('assembly4')
+    lpb_location_assembly5 = set_lbp_location('assembly5')
 
-col3 = []
-for i in range(1, 11):
-    col3.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly3, 'assembly3', i)))
+    col1 = []
+    for i in range(1, 11):
+        col1.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly1, 'assembly1', i)))
 
-col4 = []
-for i in range(1, 12):
-    col4.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly4, 'assembly4', i)))
+    col2 = []
+    for i in range(4, 12):
+        col2.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly2, 'assembly2', i)))
 
-col5 = []
-for i in range(1, 11):
-    col5.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly5, 'assembly5', i)))
+    col3 = []
+    for i in range(1, 11):
+        col3.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly3, 'assembly3', i)))
 
-assembly_1 = """
-M M M M M M M M M M M M M
- M M M M M M M M {col1[0][0]} {col1[0][1]} M M M
-  M M M M M M {col1[1][0]} {col1[1][1]} C {col1[1][2]} {col1[1][3]} M M
-   M M M M M M C {col1[2][0]} {col1[2][1]} C {col1[2][2]} {col1[2][3]} M
-    M M M M M M {col1[3][0]} C {col1[3][1]} {col1[3][2]} C {col1[3][3]} M
-     M M M M M M {col1[4][0]} {col1[4][1]} C {col1[4][2]} {col1[4][3]} M M
-      M M M M M M C {col1[5][0]} {col1[5][1]} C {col1[5][2]} M M
-       M M M M M M {col1[6][0]} C {col1[6][1]} {col1[6][2]} M M M
-        M M M M M M {col1[7][0]} {col1[7][1]} C {col1[7][2]} M M M
-         M M M M M M C {col1[8][0]} {col1[8][1]} M M M M
-          M M M M M M {col1[9][0]} M M M M M M
-           M M M M M M M M M M M M M
-            M M M M M M M M M M M M M
-""".format(**locals())
+    col4 = []
+    for i in range(1, 12):
+        col4.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly4, 'assembly4', i)))
 
-assembly_2 = """
-M M M M M M M M M M M M M
- M M M M M M M M M M M M M
-  M M M M M M M M M M M M M
-   M M M M M M M M M M M M M
-    M M M {col2[0][0]} C M M M M M M M M
-     M M M {col2[1][0]} {col2[1][1]} C M M M M M M M
-      M M {col2[2][0]} C {col2[2][1]} M M M M M M M M
-       M M {col2[3][0]} {col2[3][1]} C M M C M M M M M
-        M {col2[4][0]} C {col2[4][1]} {col2[4][2]} C {col2[4][3]} {col2[4][4]} C M M M M
-         M {col2[5][0]} {col2[5][1]} C {col2[5][2]} {col2[5][3]} C {col2[5][4]} {col2[5][5]} M M M M
-          M M {col2[6][0]} {col2[6][1]} C {col2[6][2]} {col2[6][3]} M M M M M M
-           M M M {col2[7][0]} {col2[7][1]} M M M M M M M M
-            M M M M M M M M M M M M M
-""".format(**locals())
+    col5 = []
+    for i in range(1, 11):
+        col5.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly5, 'assembly5', i)))
 
-assembly_3 = """
-M M M M M M M M M M M M M
- M M M M M M M M {col3[0][0]} {col3[0][1]} M M M
-  M M M M M M {col3[1][0]} {col3[1][1]} C {col3[1][2]} {col3[1][3]} M M
-   M M M M M M C {col3[2][0]} {col3[2][1]} C {col3[2][2]} {col3[2][3]} M
-    M M M M M M {col3[3][0]} C {col3[3][1]} {col3[3][2]} C {col3[3][3]} M
-     M M M M M M {col3[4][0]} {col3[4][1]} C {col3[4][2]} {col3[4][3]} M M
-      M M M M M M C {col3[5][0]} {col3[5][1]} C {col3[5][2]} M M
-       M M M M M M {col3[6][0]} C {col3[6][1]} {col3[6][2]} M M M
-        M M M M M M {col3[7][0]} {col3[7][1]} C {col3[7][2]} M M M
-         M M M M M M C {col3[8][0]} {col3[8][1]} M M M M
-          M M M M M M {col3[9][0]} M M M M M M
-           M M M M M M M M M M M M M
-            M M M M M M M M M M M M M
-""".format(**locals())
+    assembly_1 = """
+    M M M M M M M M M M M M M
+     M M M M M M M M {col1[0][0]} {col1[0][1]} M M M
+      M M M M M M {col1[1][0]} {col1[1][1]} C {col1[1][2]} {col1[1][3]} M M
+       M M M M M M C {col1[2][0]} {col1[2][1]} C {col1[2][2]} {col1[2][3]} M
+        M M M M M M {col1[3][0]} C {col1[3][1]} {col1[3][2]} C {col1[3][3]} M
+         M M M M M M {col1[4][0]} {col1[4][1]} C {col1[4][2]} {col1[4][3]} M M
+          M M M M M M C {col1[5][0]} {col1[5][1]} C {col1[5][2]} M M
+           M M M M M M {col1[6][0]} C {col1[6][1]} {col1[6][2]} M M M
+            M M M M M M {col1[7][0]} {col1[7][1]} C {col1[7][2]} M M M
+             M M M M M M C {col1[8][0]} {col1[8][1]} M M M M
+              M M M M M M {col1[9][0]} M M M M M M
+               M M M M M M M M M M M M M
+                M M M M M M M M M M M M M
+    """.format(**locals())
 
-assembly_4 = """
-M M M M M M M M M M M M M
- M M M M M M M M {col4[0][0]} {col4[0][1]} M M M
-  M M M M M M {col4[1][0]} {col4[1][1]} C {col4[1][2]} {col4[1][3]} M M
-   M M M M {col4[2][0]} {col4[2][1]} C {col4[2][2]} {col4[2][3]} C {col4[2][4]} {col4[2][5]} M
-    M M M {col4[3][0]} C {col4[3][1]} {col4[3][2]} C {col4[3][3]} {col4[3][4]} C {col4[3][5]} M
-     M M M {col4[4][0]} {col4[4][1]} C {col4[4][2]} {col4[4][3]} C {col4[4][4]} {col4[4][5]} M M
-      M M {col4[5][0]} C {col4[5][1]} {col4[5][2]} C {col4[5][3]} {col4[5][4]} C {col4[5][5]} M M
-       M M {col4[6][0]} {col4[6][1]} C {col4[6][2]} {col4[6][3]} C {col4[6][4]} {col4[6][5]} M M M
-        M {col4[7][0]} C {col4[7][1]} {col4[7][2]} C {col4[7][3]} {col4[7][4]} C {col4[7][5]} M M M
-         M {col4[8][0]} {col4[8][1]} C {col4[8][2]} {col4[8][3]} C {col4[8][4]} {col4[8][5]} M M M M
-          M M {col4[9][0]} {col4[9][1]} C {col4[9][2]} {col4[9][3]} M M M M M M
-           M M M {col4[10][0]} {col4[10][1]} M M M M M M M M
-            M M M M M M M M M M M M M
-""".format(**locals())
+    assembly_2 = """
+    M M M M M M M M M M M M M
+     M M M M M M M M M M M M M
+      M M M M M M M M M M M M M
+       M M M M M M M M M M M M M
+        M M M {col2[0][0]} C M M M M M M M M
+         M M M {col2[1][0]} {col2[1][1]} C M M M M M M M
+          M M {col2[2][0]} C {col2[2][1]} M M M M M M M M
+           M M {col2[3][0]} {col2[3][1]} C M M C M M M M M
+            M {col2[4][0]} C {col2[4][1]} {col2[4][2]} C {col2[4][3]} {col2[4][4]} C M M M M
+             M {col2[5][0]} {col2[5][1]} C {col2[5][2]} {col2[5][3]} C {col2[5][4]} {col2[5][5]} M M M M
+              M M {col2[6][0]} {col2[6][1]} C {col2[6][2]} {col2[6][3]} M M M M M M
+               M M M {col2[7][0]} {col2[7][1]} M M M M M M M M
+                M M M M M M M M M M M M M
+    """.format(**locals())
 
-assembly_5 = """
-M M M M M M M M M M M M M
- M M M M M M M M {col5[0][0]} {col5[0][1]} M M M
-  M M M M M M {col5[1][0]} {col5[1][1]} C {col5[1][2]} {col5[1][3]} M M
-   M M M M M M C {col5[2][0]} {col5[2][1]} C {col5[2][2]} {col5[2][3]} M
-    M M M M M M {col5[3][0]} C {col5[3][1]} {col5[3][2]} C {col5[3][3]} M
-     M M M M M M M M C {col5[4][0]} {col5[4][1]} M M
-      M M M M M M M M {col5[5][0]} C {col5[5][1]} M M
-       M M M M M M M C {col5[6][0]} {col5[6][1]} M M M
-        M M M M M M {col5[7][0]} {col5[7][1]} C {col5[7][2]} M M M
-         M M M M M M C {col5[8][0]} {col5[8][1]} M M M M
-          M M M M M M {col5[9][0]} M M M M M M
-           M M M M M M M M M M M M M
-            M M M M M M M M M M M M M
-""".format(**locals())
+    assembly_3 = """
+    M M M M M M M M M M M M M
+     M M M M M M M M {col3[0][0]} {col3[0][1]} M M M
+      M M M M M M {col3[1][0]} {col3[1][1]} C {col3[1][2]} {col3[1][3]} M M
+       M M M M M M C {col3[2][0]} {col3[2][1]} C {col3[2][2]} {col3[2][3]} M
+        M M M M M M {col3[3][0]} C {col3[3][1]} {col3[3][2]} C {col3[3][3]} M
+         M M M M M M {col3[4][0]} {col3[4][1]} C {col3[4][2]} {col3[4][3]} M M
+          M M M M M M C {col3[5][0]} {col3[5][1]} C {col3[5][2]} M M
+           M M M M M M {col3[6][0]} C {col3[6][1]} {col3[6][2]} M M M
+            M M M M M M {col3[7][0]} {col3[7][1]} C {col3[7][2]} M M M
+             M M M M M M C {col3[8][0]} {col3[8][1]} M M M M
+              M M M M M M {col3[9][0]} M M M M M M
+               M M M M M M M M M M M M M
+                M M M M M M M M M M M M M
+    """.format(**locals())
 
-env = Environment(loader=FileSystemLoader('./'))
-template = env.get_template('standard.template')
+    assembly_4 = """
+    M M M M M M M M M M M M M
+     M M M M M M M M {col4[0][0]} {col4[0][1]} M M M
+      M M M M M M {col4[1][0]} {col4[1][1]} C {col4[1][2]} {col4[1][3]} M M
+       M M M M {col4[2][0]} {col4[2][1]} C {col4[2][2]} {col4[2][3]} C {col4[2][4]} {col4[2][5]} M
+        M M M {col4[3][0]} C {col4[3][1]} {col4[3][2]} C {col4[3][3]} {col4[3][4]} C {col4[3][5]} M
+         M M M {col4[4][0]} {col4[4][1]} C {col4[4][2]} {col4[4][3]} C {col4[4][4]} {col4[4][5]} M M
+          M M {col4[5][0]} C {col4[5][1]} {col4[5][2]} C {col4[5][3]} {col4[5][4]} C {col4[5][5]} M M
+           M M {col4[6][0]} {col4[6][1]} C {col4[6][2]} {col4[6][3]} C {col4[6][4]} {col4[6][5]} M M M
+            M {col4[7][0]} C {col4[7][1]} {col4[7][2]} C {col4[7][3]} {col4[7][4]} C {col4[7][5]} M M M
+             M {col4[8][0]} {col4[8][1]} C {col4[8][2]} {col4[8][3]} C {col4[8][4]} {col4[8][5]} M M M M
+              M M {col4[9][0]} {col4[9][1]} C {col4[9][2]} {col4[9][3]} M M M M M M
+               M M M {col4[10][0]} {col4[10][1]} M M M M M M M M
+                M M M M M M M M M M M M M
+    """.format(**locals())
 
-full_input = template.render(
-    assembly_1=assembly_1,
-    assembly_2=assembly_2,
-    assembly_3=assembly_3,
-    assembly_4=assembly_4,
-    assembly_5=assembly_5)
+    assembly_5 = """
+    M M M M M M M M M M M M M
+     M M M M M M M M {col5[0][0]} {col5[0][1]} M M M
+      M M M M M M {col5[1][0]} {col5[1][1]} C {col5[1][2]} {col5[1][3]} M M
+       M M M M M M C {col5[2][0]} {col5[2][1]} C {col5[2][2]} {col5[2][3]} M
+        M M M M M M {col5[3][0]} C {col5[3][1]} {col5[3][2]} C {col5[3][3]} M
+         M M M M M M M M C {col5[4][0]} {col5[4][1]} M M
+          M M M M M M M M {col5[5][0]} C {col5[5][1]} M M
+           M M M M M M M C {col5[6][0]} {col5[6][1]} M M M
+            M M M M M M {col5[7][0]} {col5[7][1]} C {col5[7][2]} M M M
+             M M M M M M C {col5[8][0]} {col5[8][1]} M M M M
+              M M M M M M {col5[9][0]} M M M M M M
+               M M M M M M M M M M M M M
+                M M M M M M M M M M M M M
+    """.format(**locals())
 
-with open('mmr-sixth', 'w+') as f:
-    f.write(full_input)
+    env = Environment(loader=FileSystemLoader('./'))
+    template = env.get_template('standard.template')
+
+    full_input = template.render(
+        assembly_1=assembly_1,
+        assembly_2=assembly_2,
+        assembly_3=assembly_3,
+        assembly_4=assembly_4,
+        assembly_5=assembly_5)
+
+    with open('mmr-sixth', 'w+') as f:
+        f.write(full_input)

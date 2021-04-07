@@ -76,8 +76,9 @@ Design parameters:
 
 * mmr: contains serpent model that calculates power distribution and burnup. The design is complete. It differentiates 5 type of fuel assemblies: assembly 1, assembly 2, assembly 3, assembly 4, assembly 5.
 
- 
+* mmr-sixth: uses the symmetry 
 
+* input.py: produces input file that uses the symmetry
 
 
 
