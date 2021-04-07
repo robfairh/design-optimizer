@@ -79,6 +79,18 @@ mmr: contains serpent model that calculates power distribution and burnup
 mmr-simple: contains very simple input file
 
 
+# Burnable poison
+
+Erbia (Er2O3) or Gadolinia (Gdr2O3).
+Homogeneous mixture in the SiC matrix.
+Erbia is good for long term.
+Gadolinia is good for short term.
+Reduction in core lifetime of 20%.
+
+0.6% Er2O3
+0.5% Er2O3 + 0.05% Gd2O3
+
+[4]
 
 # References
 
