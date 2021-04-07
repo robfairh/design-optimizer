@@ -1,18 +1,22 @@
 import numpy as np
 from jinja2 import Environment, FileSystemLoader
+from random import shuffle
+import os
 
 
 def get_pins_in_columns(assemb_type):
+    '''
+    '''
     if assemb_type == 'assembly1':
-        pins_in_columns = np.array([2, 4, 4, 4, 4, 3, 3, 3, 2, 1, 0])
+        pins_in_columns = np.array([2, 4, 4, 4, 4, 3, 3, 3, 2, 1])
     elif assemb_type == 'assembly2':
-        pins_in_columns = np.array([0, 0, 0, 1, 2, 2, 2, 5, 6, 4, 2])
+        pins_in_columns = np.array([1, 2, 2, 2, 5, 6, 4, 2])
     elif assemb_type == 'assembly3':
-        pins_in_columns = np.array([2, 4, 4, 4, 4, 3, 3, 3, 2, 1, 0])
+        pins_in_columns = np.array([2, 4, 4, 4, 4, 3, 3, 3, 2, 1])
     elif assemb_type == 'assembly4':
         pins_in_columns = np.array([2, 4, 6, 6, 6, 6, 6, 6, 6, 4, 2])
     elif assemb_type == 'assembly5':
-        pins_in_columns = np.array([2, 4, 4, 4, 2, 2, 2, 3, 2, 1, 0])
+        pins_in_columns = np.array([2, 4, 4, 4, 2, 2, 2, 3, 2, 1])
     else:
         print('err: assemb_type is not valid')
     return pins_in_columns 
@@ -42,6 +46,8 @@ def find_index(assemb_type, column, row):
 
 
 def get_column_array(lbp_location, assemb_type, column):
+    '''
+    '''
     pins_in_columns = get_pins_in_columns(assemb_type)
     s = find_index(assemb_type, column, 1)
     arr = lbp_location[s:s+pins_in_columns[column-1]]
@@ -67,33 +73,47 @@ def set_lbp_location(assemb_type):
     return lpb_location
 
 
+def set_lbp_location_max(assemb_type, max_num_of_lbps):
+    '''
+    '''
+    number_of_pins = sum(get_pins_in_columns(assemb_type))
+    ones_zeros = np.random.randint(2, size=max_num_of_lbps)
+    only_zeros = np.zeros(number_of_pins-max_num_of_lbps)
+    lpb_location = np.concatenate((ones_zeros, only_zeros), axis = 0)
+    shuffle(lpb_location)
+    return lpb_location
+
+
 if __name__ == "__main__":
 
-    lpb_location_assembly1 = set_lbp_location('assembly1')
-    lpb_location_assembly2 = set_lbp_location('assembly2')
-    lpb_location_assembly3 = set_lbp_location('assembly3')
-    lpb_location_assembly4 = set_lbp_location('assembly4')
-    lpb_location_assembly5 = set_lbp_location('assembly5')
+    lpb_location = {}
+    pins = {}
 
-    col1 = []
-    for i in range(1, 11):
-        col1.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly1, 'assembly1', i)))
+    for assemb_type in ['assembly1', 'assembly2', 'assembly3', 'assembly4', 'assembly5']:
+        # lpb_location[assemb_type] = set_lbp_location(assemb_type)
+        # lpb_location[assemb_type] = set_lbp_location_max(assemb_type, 2)
+        lpb_location[assemb_type] =  np.zeros(sum(get_pins_in_columns(assemb_type)))
 
-    col2 = []
-    for i in range(4, 12):
-        col2.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly2, 'assembly2', i)))
+    lpb_location['assembly1'][find_index('assembly1', 2, 1)] = 1
+    lpb_location['assembly1'][find_index('assembly1', 3, 1)] = 1 
 
-    col3 = []
-    for i in range(1, 11):
-        col3.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly3, 'assembly3', i)))
+    lpb_location['assembly2'][find_index('assembly2', 3, 2)] = 1
+    lpb_location['assembly2'][find_index('assembly2', 6, 2)] = 1 
 
-    col4 = []
-    for i in range(1, 12):
-        col4.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly4, 'assembly4', i)))
+    lpb_location['assembly4'][find_index('assembly4', 3, 2)] = 1
+    lpb_location['assembly4'][find_index('assembly4', 6, 2)] = 1 
 
-    col5 = []
-    for i in range(1, 11):
-        col5.append(convert_lbparray_to_universe(get_column_array(lpb_location_assembly5, 'assembly5', i)))
+    for assemb_type in ['assembly1', 'assembly2', 'assembly3', 'assembly4', 'assembly5']:
+        col = []
+        for i in range(1, len(get_pins_in_columns(assemb_type))+1):
+            col.append(convert_lbparray_to_universe(get_column_array(lpb_location[assemb_type], assemb_type, i)))
+        pins[assemb_type] = col
+
+    col1 = pins['assembly1']
+    col2 = pins['assembly2']
+    col3 = pins['assembly3']
+    col4 = pins['assembly4']
+    col5 = pins['assembly5']
 
     assembly_1 = """
     M M M M M M M M M M M M M
@@ -185,5 +205,7 @@ if __name__ == "__main__":
         assembly_4=assembly_4,
         assembly_5=assembly_5)
 
-    with open('mmr-sixth', 'w+') as f:
+    with open('test_mmr', 'w+') as f:
         f.write(full_input)
+
+    os.system('sss2 -plot test_mmr')
