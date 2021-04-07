@@ -3,7 +3,7 @@ from jinja2 import Environment, FileSystemLoader
 
 
 def get_pins_in_columns(assemb_type):
-	if assemb_type == 'assembly1':
+    if assemb_type == 'assembly1':
         pins_in_columns = np.array([2, 4, 4, 4, 4, 3, 3, 3, 2, 1, 0])
     elif assemb_type == 'assembly2':
         pins_in_columns = np.array([0, 0, 0, 1, 2, 2, 2, 5, 6, 4, 2])
@@ -49,8 +49,8 @@ def get_column_array(lbp_location, assemb_type, column):
 
 
 def convert_lbparray_to_universe(lbparray):
-	'''
-	'''
+    '''
+    '''
     universes = []
     for i in lbparray:
         if i == 1:
@@ -60,17 +60,18 @@ def convert_lbparray_to_universe(lbparray):
     return universes
 
 
-pins_in_columns_in_assembly1 = np.array([2, 4, 4, 4, 4, 3, 3, 3, 2, 1, 0])
-pins_in_columns_in_assembly2 = np.array([0, 0, 0, 1, 2, 2, 2, 5, 6, 4, 2])
-pins_in_columns_in_assembly3 = np.array([2, 4, 4, 4, 4, 3, 3, 3, 2, 1, 0])
-pins_in_columns_in_assembly4 = np.array([2, 4, 6, 6, 6, 6, 6, 6, 6, 4, 2])
-pins_in_columns_in_assembly5 = np.array([2, 4, 4, 4, 2, 2, 2, 3, 2, 1, 0])
+lpb_location_assembly1 = np.zeros(sum(get_pins_in_columns('assembly1')))
+lpb_location_assembly2 = np.zeros(sum(get_pins_in_columns('assembly2')))
+lpb_location_assembly3 = np.zeros(sum(get_pins_in_columns('assembly3')))
+lpb_location_assembly4 = np.zeros(sum(get_pins_in_columns('assembly4')))
+lpb_location_assembly5 = np.zeros(sum(get_pins_in_columns('assembly5')))
 
-lpb_location_assembly1 = np.zeros(sum(pins_in_columns_in_assembly1))
-lpb_location_assembly2 = np.zeros(sum(pins_in_columns_in_assembly2))
-lpb_location_assembly3 = np.zeros(sum(pins_in_columns_in_assembly3))
-lpb_location_assembly4 = np.zeros(sum(pins_in_columns_in_assembly4))
-lpb_location_assembly5 = np.zeros(sum(pins_in_columns_in_assembly5))
+lpb_location_assembly1[find_index('assembly1', 1, 1)] = 1
+lpb_location_assembly1[find_index('assembly1', 2, 1)] = 1
+
+lpb_location_assembly4[find_index('assembly4', 3, 2)] = 1
+lpb_location_assembly4[find_index('assembly4', 6, 3)] = 1
+
 
 col1 = []
 for i in range(1, 11):
@@ -182,5 +183,5 @@ full_input = template.render(
     assembly_4=assembly_4,
     assembly_5=assembly_5)
 
-with open('test_mmr_jinja', 'w+') as f:
+with open('mmr-sixth', 'w+') as f:
     f.write(full_input)
