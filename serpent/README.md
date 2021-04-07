@@ -1,6 +1,6 @@
 # Serpent files
 
-* mmr1:
+* mmr:
   * based on [memo-fullcore9](https://github.com/robfairh/uiuc-microreactors/blob/feedback/usnc/memo-fullcore9)
   * 4 fuel assembly tall
   * e% = 19.75
@@ -8,7 +8,7 @@
   * reflector thickness 68 cm
   * reflector made of graphite
 
-* particles63: fuel compact of 63.24 cm-height, 1.085 cm-radius.
+* particles68: fuel compact of 68 cm-height, 1.085 cm-radius.
 
 | Component     | Material      | Reference 		|
 |---------------|---------------|-------------------|
@@ -74,9 +74,11 @@ Design parameters:
 
 # Notes
 
+* mmr: contains serpent model that calculates power distribution and burnup. The design is complete. It differentiates 5 type of fuel assemblies: assembly 1, assembly 2, assembly 3, assembly 4, assembly 5.
 
-mmr: contains serpent model that calculates power distribution and burnup
-mmr-simple: contains very simple input file
+ 
+
+
 
 
 # Burnable poison

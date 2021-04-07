@@ -47,28 +47,34 @@ cell 504 C block    102
 surf 103 inf
 cell 505 M block  -103
 
-% -- Fuel Block Lattice
+% -- lumped burnable poison rods
+surf 104 cyl 0.0 0.0 1.085 0.0 272.0
+
+cell 506 L poison  -104
+cell 507 L block    104
+
+% -- Assembly 1: Fuel Block Lattice
 lat 20 3 0.0 0.0 13 13 3.333
 M M M M M M M M M M M M M
- M M M M M M M M F F M M M
+ M M M M M M M M L F M M M
   M M M M M M F F C F F M M
    M M M M F F C F F C F F M
     M M M F C F F C F F C F M
      M M M F F C F F C F F M M
-      M M F C F F C F F C F M M
+      M M L C F F C F F C F M M
        M M F F C F F C F F M M M
         M F C F F C F F C F M M M
          M F F C F F C F F M M M M
           M M F F C F F M M M M M M
-           M M M F F M M M M M M M M
+           M M M L F M M M M M M M M
             M M M M M M M M M M M M M
 
 surf 120 hexyprism 0.0 0.0 15.0 0.0 272.0
 
-cell 520 FB fill 20  -120
-cell 521 FB block     120
+cell 520 A1 fill 20  -120
+cell 521 A1 block     120
 
-% -- Control Block Lattice
+% -- Assembly 2: Control Block Lattice
 lat 21 3 0.0 0.0 13 13 3.333
 M M M M M M M M M M M M M
  M M M M M M M M F F M M M
@@ -87,46 +93,111 @@ M M M M M M M M M M M M M
 surf 121 cyl       0.0 0.0  4.0 0.0 272.0
 surf 122 hexyprism 0.0 0.0 15.0 0.0 272.0
 
-cell 530 CB helium   -121
-cell 531 CB fill 21   121 -122
-cell 532 CB block     122
+cell 522 A2 helium   -121
+cell 523 A2 fill 21   121 -122
+cell 524 A2 block     122
+
+% -- Assembly 3: Fuel Block Lattice
+lat 22 3 0.0 0.0 13 13 3.333
+M M M M M M M M M M M M M
+ M M M M M M M M F F M M M
+  M M M M M M F F C F F M M
+   M M M M F F C F F C F F M
+    M M M F C F F C F F C F M
+     M M M F F C F F C F F M M
+      M M F C F F C F F C F M M
+       M M F F C F F C F F M M M
+        M F C F F C F F C F M M M
+         M F F C F F C F F M M M M
+          M M F F C F F M M M M M M
+           M M M F F M M M M M M M M
+            M M M M M M M M M M M M M
+
+surf 123 hexyprism 0.0 0.0 15.0 0.0 272.0
+
+cell 525 A3 fill 22  -123
+cell 526 A3 block     123
+
+% -- Assembly 4: Fuel Block Lattice
+lat 23 3 0.0 0.0 13 13 3.333
+M M M M M M M M M M M M M
+ M M M M M M M M F F M M M
+  M M M M M M F F C F F M M
+   M M M M F F C F F C F F M
+    M M M F C F F C F F C F M
+     M M M F F C F F C F F M M
+      M M F C F F C F F C F M M
+       M M F F C F F C F F M M M
+        M F C F F C F F C F M M M
+         M F F C F F C F F M M M M
+          M M F F C F F M M M M M M
+           M M M F F M M M M M M M M
+            M M M M M M M M M M M M M
+
+surf 124 hexyprism 0.0 0.0 15.0 0.0 272.0
+
+cell 527 A4 fill 23  -124
+cell 528 A4 block     124
+
+% -- Assembly 5: Control Block Lattice
+lat 24 3 0.0 0.0 13 13 3.333
+M M M M M M M M M M M M M
+ M M M M M M M M F F M M M
+  M M M M M M F F C F F M M
+   M M M M F F C F F C F F M
+    M M M F C F F C F F C F M
+     M M M F F C M M C F F M M
+      M M F C F M M M F C F M M
+       M M F F C M M C F F M M M
+        M F C F F C F F C F M M M
+         M F F C F F C F F M M M M
+          M M F F C F F M M M M M M
+           M M M F F M M M M M M M M
+            M M M M M M M M M M M M M
+
+surf 125 cyl       0.0 0.0  4.0 0.0 272.0
+surf 126 hexyprism 0.0 0.0 15.0 0.0 272.0
+
+cell 529 A5 helium   -125
+cell 530 A5 fill 24   125 -126
+cell 531 A5 block     126
 
 % -- Central Block -- Safety Block
-surf 123 cyl 0.0 0.0 6.0 0.0 272.0
+surf 130 cyl 0.0 0.0 6.0 0.0 272.0
 
-cell 540 SB helium   -123
-cell 541 SB block     123
+cell 540 SB helium   -130
+cell 541 SB block     130
 
 % -- Moderator Block
-surf 124 inf
-cell 550 MB block  -124
+surf 131 inf
+cell 550 MB block  -131
 
 % -- Core Lattice
-lat 22 3 0.0 0.0 11 11 30.0
+lat 30 3 0.0 0.0 11 11 30.0
 MB MB MB MB MB MB MB MB MB MB MB
  MB MB MB MB MB MB MB MB MB MB MB
-  MB MB MB MB MB CB FB FB CB MB MB
-   MB MB MB MB FB FB CB FB FB MB MB
-    MB MB MB FB CB FB FB CB FB MB MB
-     MB MB CB FB FB SB FB FB CB MB MB
-      MB MB FB CB FB FB CB FB MB MB MB
-       MB MB FB FB CB FB FB MB MB MB MB
-        MB MB CB FB FB CB MB MB MB MB MB
+  MB MB MB MB MB A5 A4 A4 A5 MB MB
+   MB MB MB MB A4 A3 A2 A3 A4 MB MB
+    MB MB MB A4 A2 A1 A1 A2 A4 MB MB
+     MB MB A5 A3 A1 SB A1 A3 A5 MB MB
+      MB MB A4 A2 A1 A1 A2 A4 MB MB MB
+       MB MB A4 A3 A2 A3 A4 MB MB MB MB
+        MB MB A5 A4 A4 A5 MB MB MB MB MB
          MB MB MB MB MB MB MB MB MB MB MB
           MB MB MB MB MB MB MB MB MB MB MB
-  
+
 % Reflector: radial
-surf 130 cyl 0.0 0.0 134.0 0.0 272.0
-cell 560 0 fill 22   -130
+surf 140 cyl 0.0 0.0 134.0 0.0 272.0
+cell 560 0 fill 30   -140
 
 % Reflector: bottom and top
-surf 132 cyl 0.0 0.0 134.0  -68   0
-surf 133 cyl 0.0 0.0 134.0  272 340
-surf 134 cyl 0.0 0.0 134.0  -68 340
+surf 142 cyl 0.0 0.0 134.0  -68   0
+surf 143 cyl 0.0 0.0 134.0  272 340
+surf 144 cyl 0.0 0.0 134.0  -68 340
 
-cell 570 0 fill M -132
-cell 571 0 fill M -133
-cell 572 0 outside 134
+cell 570 0 fill M -142
+cell 571 0 fill M -143
+cell 572 0 outside 144
 
 
 /**************************************
@@ -162,6 +233,9 @@ mat block     -1.75       tmp 800 moder grph 6000 rgb 135 206 250
 mat helium    -0.0017973  tmp 800                 rgb 128   0 128
  2004.08c     -1.00
 
+% need to change this
+mat poison    -1.0        tmp 800                 rgb  35 255  79
+ 6000.08c     -1.0
 
 % --- Thermal scattering data for light water:
 therm grph gr05.32t
@@ -181,81 +255,3 @@ set pop 200000 400 100
 
 % --- Burn Up parameters
 set power 15000000 %15MW
-
-% --- Pin power distribution
-det assem1 dr -8 void   dh 3 25.9808 15.0 3.333 11 11 0 272 1
-det assem2 dr -8 void   dh 3 25.9808 45.0 3.333 11 11 0 272 1
-det assem3 dr -8 void   dh 3 51.9615 30.0 3.333 11 11 0 272 1
-det assem4 dr -8 void   dh 3 51.9615 60.0 3.333 11 11 0 272 1
-det assem5 dr -8 void   dh 3 77.9423 45.0 3.333 11 11 0 272 1
-
-% --- Depletion - 4 year-steps
-% dep daytot 1460 2920 4380 5840 7300
-dep daytot 1460 2920
-set mcvol 100000000
-
-set inventory
- 922350
- 922380
-
-set pcc leli 10 10
-
-set declib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff33.dec"
-set nfylib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff33.nfy"
-
-% --- Energy spectrum detector
-% ene MyEnergyGrid 3 500 1e-11 2e1
-% det EnergyDetector de MyEnergyGrid
-
-% % --- Spatial flux detectors
-% ene engrid 1 1e-11 0.625e-6 2e1
-
-% det Axial1 n dh 3 25.98 15.0 30 1 1 -68 340 120 de engrid
-% det Axial2 n dh 3 51.96 30.0 30 1 1 -68 340 120 de engrid
-% det Axial3 n dh 3 77.94 45.0 30 1 1 -68 340 120 de engrid
-
-% det Radial1 n dn 1 0 134 80 25 35 1 102 170 1 de engrid
-
-% % --- Cross-sections homogenization
-% set gcu 0
-% set nfg 2 0.625E-6
-
-% branch fuel0
-% stp un        -10.8       600
-% stp buffer     -0.98      600 grph gr02.32t gr04.32t
-% stp pyc        -1.85      600 grph gr02.32t gr04.32t
-% stp sic        -3.2       600 grph gr02.32t gr04.32t
-% stp block      -1.75      600 grph gr02.32t gr04.32t
-% stp helium     -0.0023923 600
-% stp reflector  -3.01      600
-
-% branch fuel1
-% stp un        -10.8       900
-% stp buffer     -0.98      900 grph gr05.32t gr06.32t
-% stp pyc        -1.85      900 grph gr05.32t gr06.32t
-% stp sic        -3.2       900 grph gr05.32t gr06.32t
-% stp block      -1.75      900 grph gr05.32t gr06.32t
-% stp helium     -0.0015985 900
-% stp reflector  -3.01      900
-
-% branch fuel2
-% stp un        -10.8       1200
-% stp buffer     -0.98      1200 grph gr07.32t gr08.32t
-% stp pyc        -1.85      1200 grph gr07.32t gr08.32t
-% stp sic        -3.2       1200 grph gr07.32t gr08.32t
-% stp block      -1.75      1200 grph gr07.32t gr08.32t
-% stp helium     -0.0012002 1200
-% stp reflector  -3.01      1200
-
-% branch fuel3
-% stp un        -10.8       1500
-% stp buffer     -0.98      1500 grph gr07.32t gr08.32t
-% stp pyc        -1.85      1500 grph gr07.32t gr08.32t
-% stp sic        -3.2       1500 grph gr07.32t gr08.32t
-% stp block      -1.75      1500 grph gr07.32t gr08.32t
-% stp helium     -0.0009608 1500
-% stp reflector  -3.01      1500
-
-% coef 1
-% 0
-% 2 fuel1 fuel3
