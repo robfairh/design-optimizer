@@ -41,12 +41,12 @@ def plot_radial_power_distribution(coord, power, pitch, figname):
     patches = np.array(patches, dtype=object)
     pc = PatchCollection(patches)
     ax = gca()
-    pc.set_array(power)
+    pc.set_array(power/1e3)  # converts [W] into [kW]
     ax.add_collection(pc)
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(ymin, ymax)
     cbar = plt.colorbar(pc)
-    cbar.ax.set_ylabel('Power [MW]')
+    cbar.ax.set_ylabel('Power [kW]')
     plt.axis('equal')
     plt.xlabel('X [cm]')
     plt.ylabel('Y [cm]')
@@ -734,16 +734,21 @@ def get_keff_vs_bu(filename):
     plt.savefig('keff-vs-bu', dpi=300, bbox_inches="tight")
     plt.close()
 
-    return days, keff
+    return keff[-1]
 
 
 if __name__ == "__main__":
 
     filename = 'test_mmr'
     lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename)
+    lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
 
     # os.system('sss2 ' + filename)
     # os.system('sss2 -plot ' + filename)
 
     pow1, pow2, pow3, pow4, pow5 = get_pinpowers('mmr')
-    # print(get_keff_vs_bu('mmr'))
+    pin_power = np.concatenate((pow1, pow2, pow3, pow4, pow5), axis=0)
+    keff_20y = get_keff_vs_bu('mmr')
+
+    print(lbp_location)
+    print(pin_power)

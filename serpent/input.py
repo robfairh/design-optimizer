@@ -205,3 +205,5 @@ def create_input(filename):
 
     with open(filename, 'w+') as f:
         f.write(full_input)
+
+    return lpb_location['assembly1'], lpb_location['assembly2'], lpb_location['assembly3'], lpb_location['assembly4'], lpb_location['assembly5']
