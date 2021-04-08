@@ -1,7 +1,6 @@
 import numpy as np
 from jinja2 import Environment, FileSystemLoader
 from random import shuffle
-import os
 
 
 def get_pins_in_columns(assemb_type):
@@ -84,8 +83,7 @@ def set_lbp_location_max(assemb_type, max_num_of_lbps):
     return lpb_location
 
 
-if __name__ == "__main__":
-
+def create_input(filename):
     lpb_location = {}
     pins = {}
 
@@ -205,7 +203,5 @@ if __name__ == "__main__":
         assembly_4=assembly_4,
         assembly_5=assembly_5)
 
-    with open('test_mmr', 'w+') as f:
+    with open(filename, 'w+') as f:
         f.write(full_input)
-
-    os.system('sss2 -plot test_mmr')
