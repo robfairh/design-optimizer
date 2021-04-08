@@ -677,8 +677,11 @@ class assembly5:
         self.power = np.array(self.power)
 
 
-def get_pinpowers(filename):
+def get_pinpowers(filename, plot=False):
     '''
+    filename: [string]
+    plot: [bool]
+        if True, plot pinpower
     '''
 
     filename += '_det0.m'
@@ -711,11 +714,17 @@ def get_pinpowers(filename):
     assem5.calc_pin_positions()
     assem5.get_power(filename, 'assem5')
 
-    plot_radial_power_distribution(assem1.coord, assem1.power, 3.333, 'assem1-power')
-    plot_radial_power_distribution(assem2.coord, assem2.power, 3.333, 'assem2-power')
-    plot_radial_power_distribution(assem3.coord, assem3.power, 3.333, 'assem3-power')
-    plot_radial_power_distribution(assem4.coord, assem4.power, 3.333, 'assem4-power')
-    plot_radial_power_distribution(assem5.coord, assem5.power, 3.333, 'assem5-power')
+    # To produce a plot for each assembly:
+    # plot_radial_power_distribution(assem1.coord, assem1.power, 3.333, 'assem1-power')
+    # plot_radial_power_distribution(assem2.coord, assem2.power, 3.333, 'assem2-power')
+    # plot_radial_power_distribution(assem3.coord, assem3.power, 3.333, 'assem3-power')
+    # plot_radial_power_distribution(assem4.coord, assem4.power, 3.333, 'assem4-power')
+    # plot_radial_power_distribution(assem5.coord, assem5.power, 3.333, 'assem5-power')
+
+    coord = np.concatenate((assem1.coord, assem2.coord, assem3.coord, assem4.coord, assem5.coord), axis=0)
+    power = np.concatenate((assem1.power, assem2.power, assem3.power, assem4.power, assem5.power), axis=0)
+
+    plot_radial_power_distribution(coord, power, 3.333, 'pin-power')
 
     return assem1.power, assem2.power, assem3.power, assem4.power, assem5.power
 
@@ -746,9 +755,9 @@ if __name__ == "__main__":
     # os.system('sss2 ' + filename)
     # os.system('sss2 -plot ' + filename)
 
-    pow1, pow2, pow3, pow4, pow5 = get_pinpowers('mmr')
+    pow1, pow2, pow3, pow4, pow5 = get_pinpowers('mmr', True)
     pin_power = np.concatenate((pow1, pow2, pow3, pow4, pow5), axis=0)
     keff_20y = get_keff_vs_bu('mmr')
 
-    print(lbp_location)
-    print(pin_power)
+    print(len(lbp_location))
+    print(len(pin_power))
