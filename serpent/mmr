@@ -255,3 +255,24 @@ set pop 200000 400 100
 
 % --- Burn Up parameters
 set power 15000000 %15MW
+
+% --- Pin power distribution
+det assem1 dr -8 void   dh 3 25.9808 15.0 3.333 11 11 0 272 1
+det assem2 dr -8 void   dh 3 25.9808 45.0 3.333 11 11 0 272 1
+det assem3 dr -8 void   dh 3 51.9615 30.0 3.333 11 11 0 272 1
+det assem4 dr -8 void   dh 3 51.9615 60.0 3.333 11 11 0 272 1
+det assem5 dr -8 void   dh 3 77.9423 45.0 3.333 11 11 0 272 1
+
+% --- Depletion - 4 year-steps
+% dep daytot 1460 2920
+dep daytot 7300
+set mcvol 100000000
+
+set inventory
+ 922350
+ 922380
+
+set pcc leli 10 10
+
+set declib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff33.dec"
+set nfylib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff33.nfy"

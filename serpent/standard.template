@@ -162,8 +162,18 @@ mat helium    -0.0017973  tmp 800                 rgb 128   0 128
  2004.08c     -1.00
 
 % need to change this
-mat poison    -1.0        tmp 800                 rgb  35 255  79
- 6000.08c     -1.0
+mat poison    -3.21       tmp 800 moder grph 6000 rgb  35 255  79
+68162.08c     -0.00001
+68164.08c     -0.00007
+68166.08c     -0.00145
+68167.08c     -0.001
+68168.08c     -0.00118
+68170.08c     -0.00066
+ 8016.08c     -0.00063
+14028.08c     -0.64027
+14029.08c     -0.0338
+14030.08c     -0.02307
+ 6000.08c     -0.29786
 
 % --- Thermal scattering data for light water:
 therm grph gr05.32t
@@ -174,7 +184,7 @@ set acelib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff312.xsdata"
 % --- Vacuum boundary condition:
 set bc 1
 
-% set usym 30 3 2 0.0 0.0 30 30
+set usym 30 3 2 0.0 0.0 30 30
 
 % --- Geometry plot:
 plot 3 2000 2000 30.0
@@ -185,3 +195,24 @@ set pop 200000 400 100
 
 % --- Burn Up parameters
 set power 15000000 %15MW
+
+% --- Pin power distribution
+det assem1 dr -8 void   dh 3 25.9808 15.0 3.333 11 11 0 272 1
+det assem2 dr -8 void   dh 3 25.9808 45.0 3.333 11 11 0 272 1
+det assem3 dr -8 void   dh 3 51.9615 30.0 3.333 11 11 0 272 1
+det assem4 dr -8 void   dh 3 51.9615 60.0 3.333 11 11 0 272 1
+det assem5 dr -8 void   dh 3 77.9423 45.0 3.333 11 11 0 272 1
+
+% --- Depletion - 4 year-steps
+% dep daytot 1460 2920
+dep daytot 7300
+set mcvol 100000000
+
+set inventory
+ 922350
+ 922380
+
+set pcc leli 10 10
+
+set declib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff33.dec"
+set nfylib "/projects/sciteam/bbcc/serpent/xsdata/jeff312/sss_jeff33.nfy"

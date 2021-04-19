@@ -83,23 +83,22 @@ def set_lbp_location_max(assemb_type, max_num_of_lbps):
     return lpb_location
 
 
-def create_input(filename):
+def create_input(filename, max_num_of_lbps):
     lpb_location = {}
     pins = {}
 
     for assemb_type in ['assembly1', 'assembly2', 'assembly3', 'assembly4', 'assembly5']:
         # lpb_location[assemb_type] = set_lbp_location(assemb_type)
-        # lpb_location[assemb_type] = set_lbp_location_max(assemb_type, 2)
-        lpb_location[assemb_type] =  np.zeros(sum(get_pins_in_columns(assemb_type)))
+        lpb_location[assemb_type] = set_lbp_location_max(assemb_type, max_num_of_lbps)
 
-    lpb_location['assembly1'][find_index('assembly1', 2, 1)] = 1
-    lpb_location['assembly1'][find_index('assembly1', 3, 1)] = 1 
+    # lpb_location['assembly1'][find_index('assembly1', 2, 1)] = 1
+    # lpb_location['assembly1'][find_index('assembly1', 3, 1)] = 1 
 
-    lpb_location['assembly2'][find_index('assembly2', 3, 2)] = 1
-    lpb_location['assembly2'][find_index('assembly2', 6, 2)] = 1 
+    # lpb_location['assembly2'][find_index('assembly2', 3, 2)] = 1
+    # lpb_location['assembly2'][find_index('assembly2', 6, 2)] = 1 
 
-    lpb_location['assembly4'][find_index('assembly4', 3, 2)] = 1
-    lpb_location['assembly4'][find_index('assembly4', 6, 2)] = 1 
+    # lpb_location['assembly4'][find_index('assembly4', 3, 2)] = 1
+    # lpb_location['assembly4'][find_index('assembly4', 6, 2)] = 1
 
     for assemb_type in ['assembly1', 'assembly2', 'assembly3', 'assembly4', 'assembly5']:
         col = []

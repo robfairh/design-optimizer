@@ -1,7 +1,9 @@
 import numpy as np
 import os
-import serpentTools as st
+import re
 import matplotlib.pyplot as plt
+import pandas as pd
+import serpentTools as st
 from matplotlib.patches import RegularPolygon
 from matplotlib.collections import PatchCollection
 from matplotlib.pyplot import gca
@@ -121,7 +123,7 @@ class assembly1:
         # 11
         # 
         self.coord = np.array(self.coord)
-        print(f'Number of pins per column: {number_of_pins}')
+        # print(f'Number of pins per column: {number_of_pins}')
 
     def get_power(self, filename, detectorname):
         data = st.read(filename, reader='det')
@@ -233,7 +235,7 @@ class assembly2:
         number_of_pins[10] = len(self.coord)-sum(number_of_pins)
         # 
         self.coord = np.array(self.coord)        
-        print(f'Number of pins per column: {number_of_pins}')
+        # print(f'Number of pins per column: {number_of_pins}')
 
     def get_power(self, filename, detectorname):
         data = st.read(filename, reader='det')
@@ -347,7 +349,7 @@ class assembly3:
         number_of_pins[10] = len(self.coord)-sum(number_of_pins)
         # 
         self.coord = np.array(self.coord)
-        print(f'Number of pins per column: {number_of_pins}')
+        # print(f'Number of pins per column: {number_of_pins}')
 
     def get_power(self, filename, detectorname):
         data = st.read(filename, reader='det')
@@ -491,7 +493,7 @@ class assembly4:
         number_of_pins[10] = len(self.coord)-sum(number_of_pins)
         # 
         self.coord = np.array(self.coord)
-        print(f'Number of pins per column: {number_of_pins}')
+        # print(f'Number of pins per column: {number_of_pins}')
 
     def get_power(self, filename, detectorname):
         data = st.read(filename, reader='det')
@@ -629,7 +631,7 @@ class assembly5:
         # 11
         # 
         self.coord = np.array(self.coord)
-        print(f'Number of pins per column: {number_of_pins}')
+        # print(f'Number of pins per column: {number_of_pins}')
 
     def get_power(self, filename, detectorname):
         data = st.read(filename, reader='det')
@@ -724,7 +726,7 @@ def get_pinpowers(filename, plot=False):
     coord = np.concatenate((assem1.coord, assem2.coord, assem3.coord, assem4.coord, assem5.coord), axis=0)
     power = np.concatenate((assem1.power, assem2.power, assem3.power, assem4.power, assem5.power), axis=0)
 
-    plot_radial_power_distribution(coord, power, 3.333, 'pin-power')
+    # plot_radial_power_distribution(coord, power, 3.333, 'pin-power')
 
     return assem1.power, assem2.power, assem3.power, assem4.power, assem5.power
 
@@ -736,28 +738,35 @@ def get_keff_vs_bu(filename):
     keff = data.resdata['impKeff'][:, 0]
     days = data.resdata['burnDays'][:, 0]
 
-    plt.figure()
-    plt.plot(days, keff, marker='o')
-    plt.xlabel('EFFPD')
-    plt.ylabel('Keff')
-    plt.savefig('keff-vs-bu', dpi=300, bbox_inches="tight")
-    plt.close()
+    # plt.figure()
+    # plt.plot(days, keff, marker='o')
+    # plt.xlabel('EFFPD')
+    # plt.ylabel('Keff')
+    # plt.savefig('keff-vs-bu', dpi=300, bbox_inches="tight")
+    # plt.close()
 
     return keff[-1]
 
 
 if __name__ == "__main__":
 
-    filename = 'test_mmr'
-    lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename)
-    lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
+    if not os.path.exists('lbp_data.csv'):
+        filename = 'mmr0'
+        lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, 0)
+        lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
+        dataset = pd.DataFrame({'mmr0': lbp_location})
+        dataset.to_csv('lbp_data2.csv')
+
+    else:
+        dataset = pd.read_csv('lbp_data2.csv')
+        start_index = int(re.search(r'\d+', dataset.columns[-1]).group())
+        start_index += 1
+        for index in range(start_index, start_index+10):
+            filename = 'mmr' + str(index)
+            lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, 3)
+            lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
+            dataset[filename] = lbp_location
+        dataset.to_csv('lbp_data2.csv', index=False)
 
     # os.system('sss2 ' + filename)
     # os.system('sss2 -plot ' + filename)
-
-    pow1, pow2, pow3, pow4, pow5 = get_pinpowers('mmr', True)
-    pin_power = np.concatenate((pow1, pow2, pow3, pow4, pow5), axis=0)
-    keff_20y = get_keff_vs_bu('mmr')
-
-    print(len(lbp_location))
-    print(len(pin_power))
