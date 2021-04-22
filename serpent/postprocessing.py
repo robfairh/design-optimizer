@@ -7,7 +7,7 @@ from main import get_keff_vs_bu
 
 if __name__ == "__main__":
 
-    for index in range(3, 11):
+    for index in range(61, 101):
 
         filename = 'mmr' + str(index)
         pow1, pow2, pow3, pow4, pow5 = get_pinpowers(filename, True)

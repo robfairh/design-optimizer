@@ -95,6 +95,19 @@ Reduction in core lifetime of 20%.
 
 [4]
 
+Max LBPs  5% 10% 15% 20% 25% 30% 35% 40%
+ass1: 30  1   3   5   6   8   9  11  12
+ass2: 24  1   2   4   5   6   7   8  10
+ass3: 30  1   3   5   6   8   9  11  12
+ass4: 54  2   5   8  11  14  16  19  22
+ass5: 26  1   3   4   5   7   8   9  10
+
+mmr0-mmr30: not sure
+mmr30-mmr40: [8, 8, 8, 15, 8]
+mmr40-mmr60 (25%): [8, 6, 8, 14, 7]
+mmr60-mmr150 (20%): [6, 5, 6, 11, 5]
+
+
 # References
 
 [1] Hawari. Development and Deployment Assessment of a Melt-Down Proof Modular Micro Reactor (MDP-MMR). Technical Report. NEUP-DOE. 2018.

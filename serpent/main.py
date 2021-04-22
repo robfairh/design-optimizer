@@ -750,7 +750,7 @@ def get_keff_vs_bu(filename):
 
 if __name__ == "__main__":
 
-    if not os.path.exists('lbp_data.csv'):
+    if not os.path.exists('lbp_data2.csv'):
         filename = 'mmr0'
         lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, 0)
         lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
@@ -761,9 +761,9 @@ if __name__ == "__main__":
         dataset = pd.read_csv('lbp_data2.csv')
         start_index = int(re.search(r'\d+', dataset.columns[-1]).group())
         start_index += 1
-        for index in range(start_index, start_index+10):
+        for index in range(start_index, start_index+20):
             filename = 'mmr' + str(index)
-            lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, 3)
+            lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, [6, 5, 6, 11, 5])
             lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
             dataset[filename] = lbp_location
         dataset.to_csv('lbp_data2.csv', index=False)

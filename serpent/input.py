@@ -87,9 +87,9 @@ def create_input(filename, max_num_of_lbps):
     lpb_location = {}
     pins = {}
 
-    for assemb_type in ['assembly1', 'assembly2', 'assembly3', 'assembly4', 'assembly5']:
+    for index, assemb_type in enumerate(['assembly1', 'assembly2', 'assembly3', 'assembly4', 'assembly5']):
         # lpb_location[assemb_type] = set_lbp_location(assemb_type)
-        lpb_location[assemb_type] = set_lbp_location_max(assemb_type, max_num_of_lbps)
+        lpb_location[assemb_type] = set_lbp_location_max(assemb_type, max_num_of_lbps[index])
 
     # lpb_location['assembly1'][find_index('assembly1', 2, 1)] = 1
     # lpb_location['assembly1'][find_index('assembly1', 3, 1)] = 1 
