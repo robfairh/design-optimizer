@@ -80,9 +80,11 @@ Design parameters:
 
 * input.py: produces input file that uses the symmetry
 
+* mmr-mmrB:
+LBP is disperse in the fuel pellet.
 
 
-# Burnable poison
+# Pure burnable poison
 
 Erbia (Er2O3) or Gadolinia (Gdr2O3).
 Homogeneous mixture in the SiC matrix.
@@ -106,6 +108,15 @@ mmr0-mmr30: not sure
 mmr30-mmr40: [8, 8, 8, 15, 8]
 mmr40-mmr60 (25%): [8, 6, 8, 14, 7]
 mmr60-mmr150 (20%): [6, 5, 6, 11, 5]
+
+
+# Burnable poison mixed in the fuel matrix
+
+mmr0-mmr49 (20%): [6, 5, 6, 11, 5]
+mmr50-mmr99 (25%): [8, 6, 8, 14, 7]
+mmr100-mmr149 (30%): [9, 7, 9, 16, 8]
+
+mmr150-mmr200 (35%): [11, 8, 11, 19, 9]
 
 
 # References

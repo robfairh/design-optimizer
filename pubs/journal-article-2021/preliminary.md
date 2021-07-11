@@ -25,7 +25,12 @@ souza_neural_2006
 montes_local_2009
 erdogan_pwr_2003
 
-Not sure about this, but maybe, reducing the power peaking factor increases the fuel utilization??
+The power output of the reactor can be increased by a more uniform distribution of the power density across the core.
+This is referred to as “flux flattening” which improves the average power and burnup of the peripheral subassemblies.
+
+This may also provide improved utilization of the fuel and leading to decrease the cost of the power produced by the reactor.
+
+\cite{jayalal_application_2016}
 
 
 * Why is a reactor lifetime of more than 20 year desired/necessary?
@@ -60,26 +65,19 @@ ANNs produce results much faster and with good accuracy \cite{dubey_quick_1997}.
 * Why ANNs?
 
 What are ANNs?
-
-A successfully trained neural network works as a mapping function, which maps a set of input vectors X (n-dimensional space) to a set of output vectors Y (in m-dimensional space) \cite{guo_use_1992}.
-
-Neural networks form the base of deep learning, which is a subfield of machine learning, where the structure of the human brain inspires the algorithms. Neural networks take input data, train themselves to recognize patterns found in the data, and then predict the output for a new set of similar data. Therefore, a neural network can be thought of as the functional unit of deep learning, which mimics the behavior of the human brain to solve complex data-driven problems.
+Neural networks form the base of deep learning, which is a subfield of machine learning, which mimics the behavior of the human brain to solve complex data-driven problems.
 
 https://pub.towardsai.net/building-neural-networks-from-scratch-with-python-code-and-math-in-detail-i-536fae5d7bbf
 
-They can automatically extract features from unstructured data like texts, images, and sounds, and deep learning has greatly reduced the time spent to manually create features.
-
-https://heartbeat.fritz.ai/building-a-neural-network-from-scratch-using-python-part-1-6d399df8d432
-
-
-
-Need to dig a bit more into this.
-Because they are accurate?
-ANNs are good at finding relationships between a set of inputs and a set of output vectors.
-
+The training of a neural network automatically recognizes patterns in the data.
+The successfully trained neural network works as a mapping function, which maps a set of input vectors X to a set of output vectors Y \cite{guo_use_1992}.
+Then, the neural network predicts the output for a new set of data.
 
 * Why GAs?
 What are GAs?
+
+Genetic algorithms draw inspiration from Darwin’s theory of the survival of the fittest and natural selection \cite{jayalal_application_2016}.
+David Goldberg popularized and successfully applied GAs to several engineering problems \cite{goldberg_genetic_1989}.
 
 
 
@@ -112,9 +110,19 @@ Uses ANNs
 **ML for reactor design**:
 
 Sobes et al. 2020 \cite{sobes_artificial_2020}
-
 used the pattern search method for solving the topological optimization problem of minimizing the reactor volume while preserving 1500 pcm excess reactivity and a maximum fuel temperature of 618 C.
 
+erdogan_pwr_2003
+
+montes_local_2009
+
+souza_neural_2006
+
+
+**GAs Applications**:
+
+image processing and pattern recognition \cite{shieh_genetic_2004}
+machine condition monitoring \cite{jack_fault_2002}
 
 
 # The Microreactor
@@ -135,6 +143,26 @@ This section describes the characterstics of the microreactor.
 
 # Methodology
 
+Original approach:
+
+* Get initial population
+* Train ANN
+* Iterate:
+  * Use GA to obtain fitter populations
+  * Use ANN to obtain fitness values
+
+New approach:
+It seems like ANNs require a lot of training cases ...
+
+* Get initial population
+* Iterate:
+	* Use GA to obtain fitter populations
+	* Calculate fitness by running Serpent
+* Once I have enough cases: Train ANN
+* Iterate:
+  * Use GA to obtain fitter populations
+  * Use ANN to obtain fitness values
+
 ## Serpent
 
 This work used Serpent 2.1.31 and the cross-section library JEFF3.1.2 for obtaining the training data for the ANN.
@@ -154,12 +182,12 @@ The main disadvantage is that simulating complex systems is computing-intensive,
 
 [to do] Describe the ANN used in this work
 
-This work used a feedforward ANN trained using the backpropagation method. cite?
+This work used a feedforward ANN trained using the backpropagation method.
 
 Inputs and outputs
 The input data for the ANN is an array with labels for the fuel channels.
 The labels determine if a fuel channel hosts a fuel rod or a LBP rod.
-The ANN calculates the power distribution and the keff at BOC and EOC.
+The ANN calculates the power distribution and the keff at EOC.
 
 
 ## Genetic algorithms

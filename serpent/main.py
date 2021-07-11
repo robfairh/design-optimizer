@@ -692,27 +692,27 @@ def get_pinpowers(filename, plot=False):
     side = ff/2/np.cos(np.pi/6)
 
     assem1 = assembly1(1.5*side, 0.5*ff, 3.333)
-    assem1.show_center()
+    # assem1.show_center()
     assem1.calc_pin_positions()
     assem1.get_power(filename, 'assem1')
 
     assem2 = assembly2(1.5*side, 1.5*ff, 3.333)
-    assem2.show_center()
+    # assem2.show_center()
     assem2.calc_pin_positions()
     assem2.get_power(filename, 'assem2')
 
     assem3 = assembly3(3.*side, 1.*ff, 3.333)
-    assem3.show_center()
+    # assem3.show_center()
     assem3.calc_pin_positions()
     assem3.get_power(filename, 'assem3')
 
     assem4 = assembly4(3.*side, 2.*ff, 3.333)
-    assem4.show_center()  
+    # assem4.show_center()  
     assem4.calc_pin_positions()
     assem4.get_power(filename, 'assem4')
 
     assem5 = assembly5(4.5*side, 1.5*ff, 3.333)
-    assem5.show_center()
+    # assem5.show_center()
     assem5.calc_pin_positions()
     assem5.get_power(filename, 'assem5')
 
@@ -750,23 +750,23 @@ def get_keff_vs_bu(filename):
 
 if __name__ == "__main__":
 
-    if not os.path.exists('lbp_data2.csv'):
+    if not os.path.exists('lbp_data.csv'):
         filename = 'mmr0'
-        lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, 0)
+        lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, [0, 0, 0, 0, 0])
         lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
         dataset = pd.DataFrame({'mmr0': lbp_location})
-        dataset.to_csv('lbp_data2.csv')
+        dataset.to_csv('lbp_data.csv')
 
     else:
-        dataset = pd.read_csv('lbp_data2.csv')
+        dataset = pd.read_csv('lbp_data.csv')
         start_index = int(re.search(r'\d+', dataset.columns[-1]).group())
         start_index += 1
-        for index in range(start_index, start_index+20):
+        for index in range(start_index, start_index+50):
             filename = 'mmr' + str(index)
-            lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, [6, 5, 6, 11, 5])
+            lbp1, lbp2, lbp3, lbp4, lbp5 = create_input(filename, [9, 7, 9, 16, 8])
             lbp_location = np.concatenate((lbp1, lbp2, lbp3, lbp4, lbp5), axis=0)
             dataset[filename] = lbp_location
-        dataset.to_csv('lbp_data2.csv', index=False)
+        dataset.to_csv('lbp_data.csv', index=False)
 
     # os.system('sss2 ' + filename)
     # os.system('sss2 -plot ' + filename)

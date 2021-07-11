@@ -193,7 +193,7 @@ def create_input(filename, max_num_of_lbps):
     """.format(**locals())
 
     env = Environment(loader=FileSystemLoader('./'))
-    template = env.get_template('standard.template')
+    template = env.get_template('standard2.template')
 
     full_input = template.render(
         assembly_1=assembly_1,
